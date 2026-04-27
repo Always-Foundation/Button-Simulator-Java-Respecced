@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Incremental</title>
+<script src="ExpantaNum.js"></script>
+<style>
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: black;
+	color: white;
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 40px
+}
+button {
+	background: black;
+	color: white;
+}
+p2 {
+	font-size: 20px;
+	color: grey;
+}
+</style>
+</head>
+<body>
+
+<div id="mny">0</div>
+<p2 id="mlt">x1</p2><br><br>
+
+<button onclick="Buy(1)">Buy Generator</button><br>
+<button onclick="Buy(2)">Buy Multiplier</button><br>
+<button onclick="Buy(3)">Buy Speed</button><br><br>
+
+<button onclick="Reb()">Rebirth</button><br><br>
+
+<p2 id="reb">Rebirths: 0</p2>
+
+<script>
+function D(x){return new ExpantaNum(x)}
+function Value(x){return D(x)}
+
+var mny = D(0)
+var cost = D(10)
+var mlt = D(1)
+var select = 0
+var reb = D(0)
+var rspd = D(1)
+var c2 = D(0)
+var c3 = D(0)
+var rebmlt = D(1)
+var rebcst = D(1e6)
+
+function rebc2(){return D(2).pow(c2)}
+function rebc3(){return D(1.5).pow(c3)}
+
+function Reb(){
+	if(mny.gte(rebcst)){
+		reb = reb.add(1)
+		rebmlt = rebmlt.mul(2)
+		mny = D(0)
+		mlt = D(1)
+		cost = D(10)
+		c2 = D(0)
+		c3 = D(0)
+	}
+}
+
+function Buy(x){
+	if(x==1){
+		if(mny.gte(cost)){
+			mny = mny.sub(cost)
+			mlt = mlt.add(1)
+			cost = cost.mul(1.5)
+		}
+	}
+	if(x==2){
+		let c = D(100).mul(D(2).pow(c2))
+		if(mny.gte(c)){
+			mny = mny.sub(c)
+			c2 = c2.add(1)
+			mlt = mlt.mul(2)
+		}
+	}
+	if(x==3){
+		let c = D(1000).mul(D(3).pow(c3))
+		if(mny.gte(c)){
+			mny = mny.sub(c)
+			c3 = c3.add(1)
+			rspd = rspd.add(0.5)
+		}
+	}
+}
+
+setInterval(function(){
+	mny = mny.add(mlt.mul(rebmlt).mul(rebc2()).mul(rebc3()))
+	document.getElementById("mny").innerHTML = mny.toString()
+	document.getElementById("mlt").innerHTML = "x"+mlt.toString()
+	document.getElementById("reb").innerHTML = "Rebirths: "+reb.toString()
+},1000/rspd.toNumber())
+</script>
+
+</body>
+</html>
