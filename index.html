@@ -4,15 +4,16 @@
 <meta charset="UTF-8">
 <title>Incremental</title>
 <script src="ExpantaNum.js"></script>
+<link href="https://fonts.cdnfonts.com/css/monospace-typewriter" rel="stylesheet">	
 <style>
 html,
 body {
 	margin: 0;
 	padding: 0;
-	background: black;
-	color: white;
+	background: white;
+	color: black;
 	text-align: center;
-	font-family: sans-serif;
+	font-family: 'MonospaceTypewriter', sans-serif;
 	font-size: 40px
 }
 button {
@@ -27,8 +28,8 @@ p2 {
 </head>
 <body>
 
-<div id="mny">0</div>
-<p2 id="mlt">x1</p2><br><br>
+<div id="mny">1e1445</div>
+<p2 id="mlt">x1000000</p2><br><br>
 
 <button onclick="Buy(1)">Buy Generator</button><br>
 <button onclick="Buy(2)">Buy Multiplier</button><br>
@@ -42,9 +43,9 @@ p2 {
 function D(x){return new ExpantaNum(x)}
 function Value(x){return D(x)}
 
-var mny = D(0)
+var mny = D(1e1445)
 var cost = D(10)
-var mlt = D(1)
+var mlt = D(1000000)
 var select = 0
 var reb = D(0)
 var rspd = D(1)
