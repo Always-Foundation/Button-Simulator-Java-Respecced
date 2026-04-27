@@ -17,19 +17,21 @@ body {
 	font-size: 40px
 }
 button {
-	background: black;
-	color: white;
+	background: gray;
+	color: black;
+	font-family: 'MonospaceTypewriter', sans-serif;
 }
 p2 {
 	font-size: 20px;
 	color: grey;
+	font-family: 'MonospaceTypewriter', sans-serif;
 }
 </style>
 </head>
 <body>
 
 <div id="mny">1e1445</div>
-<p2 id="mlt">x1000000</p2><br><br>
+<p2 id="mlt">x1e60</p2><br><br>
 
 <button onclick="Buy(1)">Buy Generator</button><br>
 <button onclick="Buy(2)">Buy Multiplier</button><br>
@@ -44,7 +46,7 @@ function D(x){return new ExpantaNum(x)}
 function Value(x){return D(x)}
 
 var mny = D(1e1445)
-var cost = D(10)
+var cost = D(1e60)
 var mlt = D(1000000)
 var select = 0
 var reb = D(0)
